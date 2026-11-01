@@ -52,6 +52,43 @@ With SGS, you can install games wirelessly without connecting your Switch to a c
 
    Or replace `localhost` with your server's IP address.
 
+### Configuration
+
+The container runs without extra setup. To change any Laravel setting, create a
+`.env` file next to `docker-compose.yml`:
+
+```bash
+cp .env.example .env
+```
+
+Uncomment the keys you want to change, then restart:
+
+```bash
+docker compose up -d
+```
+
+Those values are injected into the container and take precedence over the
+defaults baked into the image. `PUID`, `PGID` and `TZ` are set in
+`docker-compose.yml` instead.
+
+To use your own `APP_KEY` rather than the one generated when the image was
+built (that one is shared by everyone using the public image):
+
+```bash
+docker compose run --rm --entrypoint php sgs artisan key:generate --show
+```
+
+Copy the printed value into `APP_KEY=` in your `.env`.
+
+### Using the published image
+
+To run the image from GitHub Container Registry instead of building locally:
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
 ## Adding Games
 
 Place your Nintendo Switch game files in the `games/` directory. Supported formats:

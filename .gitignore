@@ -11,3 +11,7 @@
 !/games/.gitkeep
 Thumbs.db
 docker-compose.override.yml
+/.env
+/.opencode/
+www/.env.*
+!www/.env.example

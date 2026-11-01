@@ -1,8 +1,14 @@
 services:
   sgs:
+    image: ghcr.io/vamidi/sgs:latest
     container_name: sgs
     build:
       context: . #this is required only for debug mode
+    # Optional overrides, see .env.example. Without a .env file the defaults
+    # baked into the image are used.
+    env_file:
+      - path: .env
+        required: false
     environment:
       - PUID=1000
       - PGID=1000
